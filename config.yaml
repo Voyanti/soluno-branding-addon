@@ -1,5 +1,5 @@
 name: "Frontend Asset Injector"
-version: "0.0.2"
+version: "0.0.3"
 slug: "asset_injector"
 description: "Injects custom static assets into Home Assistant frontend"
 startup: once
