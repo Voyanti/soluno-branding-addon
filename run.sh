@@ -4,7 +4,7 @@ echo "Injecting custom frontend assets..."
 
 # Define paths
 HA_STATIC_DIR="/usr/local/lib/python3.13/site-packages/hass_frontend/static"
-ARCHIVE_PATH="/data/static.tar.gz"
+ARCHIVE_PATH="/tmp/static.tar.gz"
 
 # Ensure the target directory exists
 if [ ! -d "$HA_STATIC_DIR" ]; then
