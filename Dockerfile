@@ -1,4 +1,4 @@
-FROM ghcr.io/home-assistant/amd64-base:latest
+FROM ghcr.io/home-assistant/aarch64-base:latest
 
 # Copy the static folder into the container
 COPY static/ /tmp/static/
