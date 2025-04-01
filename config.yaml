@@ -1,5 +1,5 @@
 name: "Frontend Asset Injector"
-version: "0.0.1"
+version: "0.0.2"
 slug: "asset_injector"
 description: "Injects custom static assets into Home Assistant frontend"
 startup: once
@@ -12,14 +12,3 @@ arch:
   - amd64
 privileged:
   - SYS_ADMIN
-  - DAC_READ_SEARCH
-  - DAC_OVERRIDE
-  - FOWNER
-  - FSETID
-  - SETFCAP
-  - SETGID
-  - SETUID
-  - MKNOD
-  - CHOWN
-  - NET_ADMIN
-  - SYS_PTRACE
