@@ -1,24 +1,35 @@
 #!/bin/sh
 
-echo "Injecting custom frontend assets..."
+echo "Starting asset injection process..."
 
-# Define paths
+# Paths in the add-on container (local copy of your assets)
+LOCAL_ASSETS_DIR="/tmp/static"       # This is where your add-on holds the static assets folder
+ARCHIVE_PATH="/tmp/static.tar.gz"      # The tarball that will be created
+
+# Target settings for the Home Assistant container
+HA_CONTAINER="homeassistant"            # The name of the Home Assistant container
 HA_STATIC_DIR="/usr/local/lib/python3.13/site-packages/hass_frontend/static"
-ARCHIVE_PATH="/tmp/static.tar.gz"
 
-# Ensure the target directory exists
-if [ ! -d "$HA_STATIC_DIR" ]; then
-    echo "Target directory $HA_STATIC_DIR does not exist! Exiting."
-    exit 1
-fi
-
-# Check for archive
-if [ -f "$ARCHIVE_PATH" ]; then
-    echo "Found archive at $ARCHIVE_PATH, extracting into $HA_STATIC_DIR..."
-    tar -xzf "$ARCHIVE_PATH" -C "$HA_STATIC_DIR"
-    echo "Extraction complete."
+# Create the tarball if it doesn't exist
+if [ ! -f "$ARCHIVE_PATH" ]; then
+  echo "Creating archive of local assets..."
+  tar -czf "$ARCHIVE_PATH" -C "$LOCAL_ASSETS_DIR" .
 else
-    echo "Archive not found at $ARCHIVE_PATH. Skipping."
+  echo "Archive already exists at $ARCHIVE_PATH"
 fi
 
-echo "Done. Exiting."
+# Check if Docker CLI is available
+if ! command -v docker >/dev/null 2>&1; then
+  echo "Error: docker command not found. Ensure the Docker CLI is installed and the socket is mounted."
+  exit 1
+fi
+
+# Copy the tarball to the Home Assistant container
+echo "Copying archive to Home Assistant container..."
+docker cp "$ARCHIVE_PATH" "$HA_CONTAINER":/tmp/static.tar.gz
+
+# Extract the archive inside the Home Assistant container
+echo "Extracting assets inside Home Assistant container..."
+docker exec "$HA_CONTAINER" tar -xzf /tmp/static.tar.gz -C "$HA_STATIC_DIR"
+
+echo "Asset injection complete."
