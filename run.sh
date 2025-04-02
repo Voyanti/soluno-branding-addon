@@ -26,7 +26,7 @@ fi
 
 # Copy the tarball to the Home Assistant container
 echo "Copying archive to Home Assistant container..."
-docker cp "$ARCHIVE_PATH" "$HA_CONTAINER":/tmp/static.tar.gz
+docker cp "$ARCHIVE_PATH" "$HA_CONTAINER":/config/static.tar.gz
 if [ $? -ne 0 ]; then
   echo "❌ docker cp failed."
   exit 1
@@ -34,7 +34,7 @@ fi
 
 # Extract inside Home Assistant container
 echo "Extracting assets inside Home Assistant container..."
-docker exec "$HA_CONTAINER" tar -xzf /tmp/static.tar.gz -C "$HA_STATIC_DIR"
+docker exec "$HA_CONTAINER" tar -xzf /config/static.tar.gz -C "$HA_STATIC_DIR"
 if [ $? -ne 0 ]; then
   echo "❌ docker exec failed."
   exit 1
