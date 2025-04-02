@@ -26,10 +26,10 @@ fi
 
 # Copy the tarball to the Home Assistant container
 echo "Copying archive to Home Assistant container..."
-docker cp "$ARCHIVE_PATH" "$HA_CONTAINER":/tmp/static.tar.gz
+# docker cp "$ARCHIVE_PATH" "$HA_CONTAINER":/tmp/static.tar.gz
 
 # Extract the archive inside the Home Assistant container
 echo "Extracting assets inside Home Assistant container..."
-docker exec "$HA_CONTAINER" tar -xzf /tmp/static.tar.gz -C "$HA_STATIC_DIR"
+docker exec "$HA_CONTAINER" tar -xzf "$ARCHIVE_PATH" -C "$HA_STATIC_DIR"
 
 echo "Asset injection complete."
