@@ -1,11 +1,12 @@
 name: "Frontend Asset Injector"
-version: "0.1.1"
+version: "0.1.2"
 slug: "asset_injector"
 description: "Injects custom static assets into Home Assistant frontend"
 startup: once
 boot: manual
 host_network: true
 init: false
+apparmor: false
 url: "https://github.com/Voyanti/soluno-branding-addon"
 arch:
   - aarch64
@@ -24,3 +25,5 @@ host_ipc: true
 host_dbus: true
 host_pid: true
 full_access: true
+devices:
+  - /var/run/docker.sock:/var/run/docker.sock
