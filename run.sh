@@ -40,4 +40,13 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+echo "Extraction complete."
+
+# List all files (recursively) in the target directory on the Home Assistant container
+echo "Listing extracted files and directory structure in $HA_STATIC_DIR:"
+docker exec "$HA_CONTAINER" ls -R "$HA_STATIC_DIR"
+
+# Alternatively, if the container has the 'find' command, you can also use:
+# docker exec "$HA_CONTAINER" find "$HA_STATIC_DIR"
+
 echo "✅ Asset injection complete."
