@@ -11,6 +11,6 @@ COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
 # Create a tarball of the static folder contents
-RUN tar -czf /tmp/static.tar.gz -C /tmp/static .
+RUN tar -czf /data/static.tar.gz -C /tmp/static .
 
 CMD [ "/run.sh" ]

@@ -3,8 +3,8 @@
 echo "Starting asset injection process..."
 
 # Paths in the add-on container (local copy of your assets)
-LOCAL_ASSETS_DIR="/tmp/static"       # This is where your add-on holds the static assets folder
-ARCHIVE_PATH="/tmp/static.tar.gz"      # The tarball that will be created
+LOCAL_ASSETS_DIR="/data/static"       # This is where your add-on holds the static assets folder
+ARCHIVE_PATH="/data/static.tar.gz"      # The tarball that will be created
 
 # Target settings for the Home Assistant container
 HA_CONTAINER="homeassistant"            # The name of the Home Assistant container
