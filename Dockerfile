@@ -4,13 +4,13 @@ RUN apk add --no-cache docker-cli
 
 
 # Copy the static folder into the container
-COPY static/ /tmp/static/
+COPY static/ /share/asset_injector/static/
 
 # Copy your script into the container and set executable permissions
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
 # Create a tarball of the static folder contents
-RUN tar -czf /data/static.tar.gz -C /tmp/static .
+RUN tar -czf /share/asset_injector/static.tar.gz -C /share/asset_injector/static .
 
 CMD [ "/run.sh" ]
