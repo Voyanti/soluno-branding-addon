@@ -1,0 +1,22 @@
+soluno:
+  app-header-background-color: "#ED6E3D"
+  card-mod-theme: soluno
+  card-mod-sidebar-yaml: |
+    .: |
+      .menu .title {
+        display: none !important;
+      }
+      .menu::after {
+        content: "";
+        width: 150px;
+        height: 40px;
+        background: url('/local/logo3.png') no-repeat center;
+        background-size: contain;
+        display: inline-block;
+        margin-right: 8px;
+      }
+  modes:
+    light:
+      primary-color: "#eb5e28"        # Soluno brand orange for light mode
+    dark:
+      primary-color: "#eb5e28"        # Soluno brand orange for dark mode

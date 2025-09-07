@@ -43,3 +43,12 @@ fi
 echo "Extraction complete."
 
 echo "✅ Asset injection complete."
+
+# Ensure /config/themes exists and copy custom_theme.yaml (host HA config directory)
+THEMES_DIR="/config/themes"
+if [ ! -d "$THEMES_DIR" ]; then
+  echo "Creating $THEMES_DIR..."
+  mkdir -p "$THEMES_DIR"
+fi
+cp -f /share/asset_injector/custom_theme.yaml "$THEMES_DIR/"
+echo "Copied custom_theme.yaml to $THEMES_DIR"

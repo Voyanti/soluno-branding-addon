@@ -6,6 +6,9 @@ RUN apk add --no-cache docker-cli
 # Copy the static folder into the container
 COPY static/ /share/asset_injector/static/
 
+# Copy the custom theme file
+COPY custom_theme.yaml /share/asset_injector/
+
 # Copy your script into the container and set executable permissions
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
