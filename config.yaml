@@ -1,5 +1,5 @@
 name: "Frontend Asset Injector"
-version: "0.1.13"
+version: "0.1.14"
 slug: "asset_injector"
 description: "Injects custom static assets into Home Assistant frontend"
 startup: once
@@ -19,3 +19,5 @@ privileged:
 docker_api: true
 host_dbus: true
 full_access: true
+map:
+  - config:rw
